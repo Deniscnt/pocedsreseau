@@ -65,9 +65,22 @@ Les security groups vous permettent de contrôler l’accès à vos VM dans votr
 
 5. **Création d'un Bucket**
 
+   - Sur le Cloud OUTSCALE, un bucket est une ressource logique servant à héberger des objets.
+   - Les buckets peuvent aussi servir à héberger des sites statiques, exporter vos images machines OUTSCALE (OMI) et vos snapshots, et stocker les access logs de vos load balancers.
+   - Le nom d’un bucket doit : Être unique pour toute la Région, Contenir entre 3 et 63 caractères, Commencer par un caractère alphanumérique, Contenir uniquement des minuscules, chiffres et tirets (-).
    - Allez dans le tableau de bord.
-   - Sélectionnez "Stockage" dans le menu de navigation.
-   - Cliquez sur "Créer un Bucket" et suivez les étapes pour configurer votre Bucket.
+   - Sélectionnez "Storage" dans le menu de navigation.
+   - Cliquez sur "Créer un Bucket (Volume)" et suivez les étapes pour configurer votre Bucket.
+   - Renseigner le Name, Size(GiB), Type, Snapshot, Subregion Count
+   - Access Control Lists (ACL) : Une ACL vous permet de donner à un autre utilisateur OUTSCALE des droits de lecture ou d’écriture sur un bucket ou un objet.
+   - Les URL pré-signées : Vous pouvez générer une URL pré-signée pour rendre un objet accessible à toute personne disposant du lien, pendant une durée définie.
+   - 
+
+   **Recommandations
+   Pour une utilisation optimale de vos buckets, nous recommandons les choses suivantes :
+   ne pas dépasser 200 téléchargements par seconde depuis un même bucket,
+   ne pas dépasser 300 dépôts par seconde sur un même bucket,
+   ne pas dépasser 10 millions de versions, en incluant les delete markers, dans un même bucket.
 
 6. **Configurer les Autorisations**
 
@@ -102,6 +115,13 @@ Voici quelques commandes CLI utiles pour gérer vos ressources avec l'outil en l
   ```bash
   osc-s3 DescribeBuckets
   
-- **Créer un Bucket :
+- **Créer un Bucket avec OSC ou AWS s3 :
   ```bash
   osc-s3 CreateBucket --BucketName <BUCKET_NAME>
+  aws s3 mb --profile YOUR_PROFILE s3://YOUR_BUCKET --endpoint https://oos.eu-west-2.outscale.com
+- **GESTION Bucket** :
+  ```bash
+  osc-s3 ListObjects --BucketName <BUCKET_NAME>
+  osc-s3 GetObject --BucketName <BUCKET_NAME> --Key <OBJECT_KEY>
+  osc-s3 DeleteObject --BucketName <BUCKET_NAME> --Key <OBJECT_KEY>
+  osc-s3 DeleteBucket --BucketName <BUCKET_NAME>
