@@ -10,7 +10,7 @@ Vous utilisez des route tables pour router le trafic de chaque Subnet, et des se
 
 ## Étapes
 
-1. **Connexion à l'Interface de Gestion 3DS Outscale**
+1. **Connexion à l'Interface de Gestion 3DS Outscale COCKPIT**
 
    Rendez-vous sur le site web de 3DS Outscale et connectez-vous à l'interface de gestion.
 
@@ -72,6 +72,7 @@ Les security groups vous permettent de contrôler l’accès à vos VM dans votr
    - Sélectionnez "Storage" dans le menu de navigation.
    - Cliquez sur "Créer un Bucket (Volume)" et suivez les étapes pour configurer votre Bucket.
    - Renseigner le Name, Size(GiB), Type, Snapshot, Subregion Count
+   - Configurer les Autorisations :
    - Access Control Lists (ACL) : Une ACL vous permet de donner à un autre utilisateur OUTSCALE des droits de lecture ou d’écriture sur un bucket ou un objet.
    - Les URL pré-signées : Vous pouvez générer une URL pré-signée pour rendre un objet accessible à toute personne disposant du lien, pendant une durée définie.
    - 
