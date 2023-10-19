@@ -65,17 +65,21 @@ Les security groups vous permettent de contrôler l’accès à vos VM dans votr
 
 5. **Création d'un Bucket**
 
-   - Sur le Cloud OUTSCALE, un bucket est une ressource logique servant à héberger des objets.
+   Un Bucket est un conteneur de stockage utilisé spécifiquement dans les services de stockage d'objets, souvent associé à des services de type S3 (Simple Storage Service). Il est principalement utilisé pour stocker des objets tels que des fichiers, des images, des vidéos, etc.
+   Les Buckets sont associés aux services de stockage objet et sont souvent utilisés pour des cas d'utilisation liés au stockage de fichiers et à l'accès via des API HTTP.
+   Un Bucket peut contenir un grand nombre d'objets, et ces objets peuvent être organisés en dossiers ou répertoires virtuels.
+
+   - (1) Sur le Cloud OUTSCALE, un bucket est une ressource logique servant à héberger des objets.
    - Les buckets peuvent aussi servir à héberger des sites statiques, exporter vos images machines OUTSCALE (OMI) et vos snapshots, et stocker les access logs de vos load balancers.
    - Le nom d’un bucket doit : Être unique pour toute la Région, Contenir entre 3 et 63 caractères, Commencer par un caractère alphanumérique, Contenir uniquement des minuscules, chiffres et tirets (-).
    - Allez dans le tableau de bord.
    - Sélectionnez "Storage" dans le menu de navigation.
-   - Cliquez sur "Créer un Bucket (Volume)" et suivez les étapes pour configurer votre Bucket.
-   - Renseigner le Name, Size(GiB), Type, Snapshot, Subregion Count
+   - Cliquez sur "Créer un Bucket " et suivez les étapes pour configurer votre Bucket.
+   - Créer un volume  attaché à une instance de VM : Renseigner le Name, Size(GiB), Type, Snapshot, Subregion Count
    - Configurer les Autorisations :
    - Access Control Lists (ACL) : Une ACL vous permet de donner à un autre utilisateur OUTSCALE des droits de lecture ou d’écriture sur un bucket ou un objet.
    - Les URL pré-signées : Vous pouvez générer une URL pré-signée pour rendre un objet accessible à toute personne disposant du lien, pendant une durée définie.
-   - 
+   - (2) Bucket accessible via un vpc EndPoint, les Net access points permettent  aux VM d'accéder à un autre service OUTSCALE sans VPN.
 
    **Recommandations
    Pour une utilisation optimale de vos buckets, nous recommandons les choses suivantes :
@@ -120,6 +124,7 @@ Voici quelques commandes CLI utiles pour gérer vos ressources avec l'outil en l
   ```bash
   osc-s3 CreateBucket --BucketName <BUCKET_NAME>
   aws s3 mb --profile YOUR_PROFILE s3://YOUR_BUCKET --endpoint https://oos.eu-west-2.outscale.com
+
 - **GESTION Bucket** :
   ```bash
   osc-s3 ListObjects --BucketName <BUCKET_NAME>
